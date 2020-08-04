@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <h4 class="m-b-lg">
       Ürün Listesi
-      <a href="<?= base_url("product/new_form")  ?>" class="btn pull-right btn-outline btn-success btn-xs"><i class="fa fa-plus"></i> Yeni Ekle</a>
+      <a href="<?= base_url("product/new_form") ?>" class="btn pull-right btn-outline btn-success btn-xs"><i
+          class="fa fa-plus"></i> Yeni Ekle</a>
     </h4>
   </div>
 
@@ -10,7 +11,8 @@
     <div class="widget p-lg">
       <?php if (empty($items)): ?>
         <div class="alert alert-info text-center">
-          <p>Burada herhangi bir veri kaydı bulunmamaktadır. Eklemek için lütfen <a href="<?= base_url("product/new_form")  ?>" class="">tıklayınız</a>.
+          <p>Burada herhangi bir veri kaydı bulunmamaktadır. Eklemek için lütfen <a
+              href="<?= base_url("product/new_form") ?>" class="">tıklayınız</a>.
           </p>
         </div>
       <?php else: ?>
@@ -39,8 +41,14 @@
                 />
               </td>
               <td>
-                <a href="<?= base_url("product/delete/$item->id")  ?>" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash"></i> Sil</a>
-                <a href="<?= base_url("product/update_form/$item->id")  ?>" class="btn btn-info btn-xs btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
+                <button
+                  data-url="<?= base_url("product/delete/$item->id") ?>"
+                  class="btn btn-danger btn-xs btn-outline remove-btn">
+                  <i class="fa fa-trash"></i>
+                  Sil
+                </button>
+                <a href="<?= base_url("product/update_form/$item->id") ?>" class="btn btn-info btn-xs btn-outline"><i
+                    class="fa fa-pencil-square-o"></i> Düzenle</a>
               </td>
             </tr>
           <?php endforeach; ?>
