@@ -11,7 +11,7 @@
         <form action="<?= base_url("product/save") ?>" method="post">
           <div class="form-group">
             <label>Ürün Başlığı</label>
-            <input type="title" class="form-control" placeholder="Başlık">
+            <input type="text" name="title" class="form-control" placeholder="Başlık">
             <?php if (isset($form_error)): ?>
               <small class="input-form-error pull-right"><?= form_error("title") ?></small>
             <?php endif; ?>
