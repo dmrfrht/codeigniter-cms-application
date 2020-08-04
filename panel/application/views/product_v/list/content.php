@@ -8,44 +8,45 @@
 
   <div class="col-md-12">
     <div class="widget p-lg">
-
-      <div class="alert alert-info text-center">
-        <p>Burada herhangi bir veri kaydı bulunmamaktadır. Eklemek için lütfen <a href="#" class="">tıklayınız</a>.</p>
-      </div>
-
-      <table class="table table-hover table-striped table-bordered">
-        <thead>
-        <th>#id</th>
-        <th>url</th>
-        <th>Başlık</th>
-        <th>Açıklama</th>
-        <th>Durumu</th>
-        <th>İşlem</th>
-        </thead>
-        <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>https://www.google.com</td>
-          <td>Monitör Askısı</td>
-          <td>Monitör Askısı Çok Güzel Hacı ya</td>
-          <td>
-            <input
-              id="switch-2-2"
-              type="checkbox"
-              data-switchery
-              data-color="#10c469"
-              checked
-            />
-          </td>
-          <td>
-            <a href="#" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash"></i> Sil</a>
-            <a href="#" class="btn btn-info btn-xs btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
-          </td>
-        </tr>
-
-        </tbody>
-      </table>
+      <?php if (empty($items)): ?>
+        <div class="alert alert-info text-center">
+          <p>Burada herhangi bir veri kaydı bulunmamaktadır. Eklemek için lütfen <a href="#" class="">tıklayınız</a>.
+          </p>
+        </div>
+      <?php else: ?>
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+          <th>#id</th>
+          <th>url</th>
+          <th>Başlık</th>
+          <th>Açıklama</th>
+          <th>Durumu</th>
+          <th>İşlem</th>
+          </thead>
+          <tbody>
+          <?php foreach ($items as $item): ?>
+            <tr>
+              <td>#<?= $item->id ?></td>
+              <td><?= $item->url ?></td>
+              <td><?= $item->title ?></td>
+              <td><?= $item->description ?></td>
+              <td>
+                <input
+                  type="checkbox"
+                  data-switchery
+                  data-color="#10c469"
+                  <?= ($item->isActive) ? " checked" : null ?>
+                />
+              </td>
+              <td>
+                <a href="#" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash"></i> Sil</a>
+                <a href="#" class="btn btn-info btn-xs btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
     </div>
   </div>
 </div>
