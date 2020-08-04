@@ -39,7 +39,7 @@
                 />
               </td>
               <td>
-                <a href="#" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash"></i> Sil</a>
+                <a href="<?= base_url("product/delete/$item->id")  ?>" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash"></i> Sil</a>
                 <a href="<?= base_url("product/update_form/$item->id")  ?>" class="btn btn-info btn-xs btn-outline"><i class="fa fa-pencil-square-o"></i> Düzenle</a>
               </td>
             </tr>
