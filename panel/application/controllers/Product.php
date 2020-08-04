@@ -61,9 +61,11 @@ class Product extends CI_Controller
       );
 
       if ($insert) {
-        echo 'Kayıt İşlemi başarılırdır';
+        // TODO -> Alert Sistemi Eklenecek
+        redirect(base_url("product"));
       } else {
-        echo 'İşlem başarısızdır';
+        // TODO -> Alert Sistemi Eklenecek
+        redirect(base_url("product"));
       }
 
     } else {
