@@ -260,4 +260,22 @@ class Product extends CI_Controller
     }
 
   }
+
+  public function refreshImageList($id)
+  {
+    $viewData = new stdClass();
+
+    $item_images = $this->product_image_model->get_all(
+      array(
+        "product_id" => $id
+      )
+    );
+
+    $viewData->viewFolder = $this->viewFolder;
+    $viewData->subViewFolder = "image";
+    $viewData->item_images = $item_images;
+
+    $render_html =  $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
+    echo $render_html;
+  }
 }
