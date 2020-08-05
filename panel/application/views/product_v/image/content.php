@@ -2,8 +2,8 @@
   <div class="col-md-12">
     <div class="widget">
       <div class="widget-body">
-        <form action="<?= base_url("product/imageUpload") ?>" class="dropzone" data-plugin="dropzone"
-              data-options="{ url: '<?= base_url("product/imageUpload") ?>'}">
+        <form action="<?= base_url("product/imageUpload/$item->id") ?>" class="dropzone" data-plugin="dropzone"
+              data-options="{ url: '<?= base_url("product/imageUpload/$item->id") ?>'}">
           <div class="dz-message">
             <h3 class="m-h-lg">Yüklemek istediğiniz resimleri buraya sürükleyiniz.</h3>
             <p class="m-b-lg text-muted">(Yüklemek için dosyalarınızı sürükleyiniz yada buraya tıklayınız)</p>

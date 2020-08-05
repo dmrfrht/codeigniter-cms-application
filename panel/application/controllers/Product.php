@@ -9,6 +9,7 @@ class Product extends CI_Controller
     parent::__construct();
     $this->viewFolder = "product_v";
     $this->load->model("product_model");
+    $this->load->model("product_image_model");
   }
 
   public function index()
@@ -221,7 +222,7 @@ class Product extends CI_Controller
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
 
-  public function imageUpload()
+  public function imageUpload($id)
   {
     $config["allowed_types"] = "jpg|jpeg|png";
     $config["upload_path"] = "uploads/$this->viewFolder/";
@@ -231,7 +232,19 @@ class Product extends CI_Controller
     $upload = $this->upload->do_upload("file");
 
     if ($upload) {
-      echo "işlem başarılı";
+      $uploaded_file = $this->upload->data("file_name");
+
+      $this->product_image_model->add(
+        array(
+          "img_url" => $uploaded_file,
+          "rank" => 0,
+          "isActive" => true,
+          "isCover" => 0,
+          "createdAt" => date("Y-m-d H:i:s"),
+          "product_id" => $id
+        )
+      );
+
     } else {
       echo "basarısız";
     }
