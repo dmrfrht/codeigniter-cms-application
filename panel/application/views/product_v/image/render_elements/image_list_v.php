@@ -3,8 +3,9 @@
     <p>Bu ürüne ait resim bulunmamaktadır.</p>
   </div>
 <?php else: ?>
-  <table class="table table-bordered table-striped table-hover table-responsive picture_list">
+  <table class="table table-bordered table-striped table-hover picture_list">
     <thead>
+    <th class="w25"><i class="fa fa-reorder"></i></th>
     <th class="w25 text-center">#id</th>
     <th class="w50 text-center">Görsel</th>
     <th>Resim Adı</th>
@@ -12,9 +13,10 @@
     <th class="w50 text-center">Durum</th>
     <th class="w50 text-center">İşlem</th>
     </thead>
-    <tbody>
+    <tbody class="sortable" data-url="<?= base_url("product/imageRankSetter")  ?>">
     <?php foreach ($item_images as $item_image): ?>
-      <tr>
+      <tr id="ord-<?= $item_image->id ?>">
+        <td><i class="fa fa-reorder"></i></td>
         <td class="text-center">#<?= $item_image->id ?></td>
         <td>
           <img width="30"
@@ -44,7 +46,7 @@
         </td>
         <td class="text-center">
           <button
-            data-url="<?= base_url("product/delete/") ?>"
+            data-url="<?= base_url("product/imageDelete/$item_image->id/$item_image->product_id") ?>"
             class="btn btn-danger btn-xs btn-outline remove-btn">
             <i class="fa fa-trash"></i>
             Sil

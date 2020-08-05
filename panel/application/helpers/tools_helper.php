@@ -8,3 +8,14 @@ function convert_to_seo($text = "")
 
   return $seo;
 }
+
+function get_file_name($id)
+{
+  $t = get_instance();
+
+  return $t->product_image_model->get(
+    array(
+      "id" => $id
+    )
+  );
+}
