@@ -53,6 +53,8 @@
                 </button>
                 <a href="<?= base_url("product/update_form/$item->id") ?>" class="btn btn-info btn-xs btn-outline"><i
                     class="fa fa-pencil-square-o"></i> Düzenle</a>
+                <a href="<?= base_url("product/imageForm/$item->id") ?>" class="btn btn-purple btn-xs btn-outline"><i
+                    class="fa fa-picture-o"></i> Resimler</a>
               </td>
             </tr>
           <?php endforeach; ?>
