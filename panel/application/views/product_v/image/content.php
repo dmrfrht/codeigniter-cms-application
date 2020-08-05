@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="widget">
       <div class="widget-body">
-        <form action="<?= base_url("product/imageUpload/$item->id") ?>" class="dropzone" data-plugin="dropzone"
+        <form action="<?= base_url("product/imageUpload/$item->id") ?>" id="dropzone" class="dropzone" data-plugin="dropzone"
               data-options="{ url: '<?= base_url("product/imageUpload/$item->id") ?>'}">
           <div class="dz-message">
             <h3 class="m-h-lg">Yüklemek istediğiniz resimleri buraya sürükleyiniz.</h3>
@@ -39,7 +39,7 @@
             <tbody>
             <?php foreach ($item_images as $item_image): ?>
               <tr>
-                <td class="text-center"><?= $item_image->id ?></td>
+                <td class="text-center">#<?= $item_image->id ?></td>
                 <td>
                   <img width="30"
                        src="<?= base_url("uploads/{$viewFolder}/$item_image->img_url") ?>"
