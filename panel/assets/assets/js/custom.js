@@ -21,6 +21,16 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  $(".isActive").on("change", function () {
+    var $data_url = $(this).data("url");
+    var $data = $(this).prop("checked");
+
+    if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
+      $.post($data_url, {data: $data}, function (res) {
+      });
+    }
+
+  });
 
 
 });
