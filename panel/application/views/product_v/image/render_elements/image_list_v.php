@@ -8,6 +8,7 @@
     <th class="w25 text-center">#id</th>
     <th class="w50 text-center">Görsel</th>
     <th>Resim Adı</th>
+    <th class="w50 text-center">Kapak</th>
     <th class="w50 text-center">Durum</th>
     <th class="w50 text-center">İşlem</th>
     </thead>
@@ -27,8 +28,18 @@
             data-url="<?= base_url("product/isActiveSetter/") ?>"
             type="checkbox"
             data-switchery
-            data-color="#10c469"
+            data-color="#ff5b5b"
             <?= ($item_image->isCover) ? " checked" : null ?>
+          />
+        </td>
+        <td class="text-center">
+          <input
+            class="isActive"
+            data-url="<?= base_url("product/isActiveSetter/") ?>"
+            type="checkbox"
+            data-switchery
+            data-color="#10c469"
+            <?= ($item_image->isActive) ? " checked" : null ?>
           />
         </td>
         <td class="text-center">
