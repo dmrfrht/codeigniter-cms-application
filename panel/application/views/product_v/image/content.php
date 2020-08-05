@@ -2,10 +2,11 @@
   <div class="col-md-12">
     <div class="widget">
       <div class="widget-body">
-        <form action="../api/dropzone" class="dropzone" data-plugin="dropzone" data-options="{ url: '../api/dropzone'}">
+        <form action="<?= base_url("product/imageUpload") ?>" class="dropzone" data-plugin="dropzone"
+              data-options="{ url: '<?= base_url("product/imageUpload") ?>'}">
           <div class="dz-message">
-            <h3 class="m-h-lg">Drop files here or click to upload.</h3>
-            <p class="m-b-lg text-muted">(This is just a demo dropzone. Selected files are not actually uploaded.)</p>
+            <h3 class="m-h-lg">Yüklemek istediğiniz resimleri buraya sürükleyiniz.</h3>
+            <p class="m-b-lg text-muted">(Yüklemek için dosyalarınızı sürükleyiniz yada buraya tıklayınız)</p>
           </div>
       </div>
     </div>
@@ -15,7 +16,7 @@
 <div class="row">
   <div class="col-md-12">
     <h4 class="m-b-lg">
-      Ürünün Fotoğrafları
+      <b><?= $item->title ?></b> ürününe ait resimler listeleniyor.
     </h4>
   </div>
 
