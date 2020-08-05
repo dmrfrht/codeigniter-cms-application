@@ -64,13 +64,20 @@ class Product extends CI_Controller
       );
 
       if ($insert) {
-        // TODO -> Alert Sistemi Eklenecek
-        redirect(base_url("product"));
+        $alert = array(
+          "title" => "İşlem Başarılıdır",
+          "text" => "Kayıt başarılı bir şekilde eklendi",
+          "type" => "success"
+        );
       } else {
-        // TODO -> Alert Sistemi Eklenecek
-        redirect(base_url("product"));
+        $alert = array(
+          "title" => "İşlem Başarısızdır",
+          "text" => "Kayıt eklenirken bir hata oluştu",
+          "type" => "error"
+        );
       }
-
+      $this->session->set_flashdata("alert", $alert);
+      redirect(base_url("product"));
     } else {
       $viewData = new stdClass();
 
@@ -126,13 +133,20 @@ class Product extends CI_Controller
       );
 
       if ($update) {
-        // TODO -> Alert Sistemi Eklenecek
-        redirect(base_url("product"));
+        $alert = array(
+          "title" => "İşlem Başarılıdır",
+          "text" => "Kayıt başarılı bir şekilde güncellendi",
+          "type" => "success"
+        );
       } else {
-        // TODO -> Alert Sistemi Eklenecek
-        redirect(base_url("product"));
+        $alert = array(
+          "title" => "İşlem Başarısızdır",
+          "text" => "Kayıt güncellenirken bir hata oluştu",
+          "type" => "error"
+        );
       }
-
+      $this->session->set_flashdata("alert", $alert);
+      redirect(base_url("product"));
     } else {
       $viewData = new stdClass();
 
@@ -161,12 +175,20 @@ class Product extends CI_Controller
     );
 
     if ($delete) {
-      // TODO -> Alert Sistemi Eklenecek
-      redirect(base_url("product"));
+      $alert = array(
+        "title" => "İşlem Başarılıdır",
+        "text" => "Kayıt başarılı bir şekilde silindi",
+        "type" => "success"
+      );
     } else {
-      // TODO -> Alert Sistemi Eklenecek
-      redirect(base_url("product"));
+      $alert = array(
+        "title" => "İşlem Başarısızdır",
+        "text" => "Kayıt silinirken bir hata oluştu",
+        "type" => "error"
+      );
     }
+    $this->session->set_flashdata("alert", $alert);
+    redirect(base_url("product"));
   }
 
   public function isActiveSetter($id)
