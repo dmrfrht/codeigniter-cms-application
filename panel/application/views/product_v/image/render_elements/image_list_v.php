@@ -24,8 +24,8 @@
         <td><?= $item_image->img_url ?></td>
         <td class="text-center">
           <input
-            class="isActive"
-            data-url="<?= base_url("product/isActiveSetter/") ?>"
+            class="isCover"
+            data-url="<?= base_url("product/isCoverSetter/$item_image->id/$item_image->product_id") ?>"
             type="checkbox"
             data-switchery
             data-color="#ff5b5b"
