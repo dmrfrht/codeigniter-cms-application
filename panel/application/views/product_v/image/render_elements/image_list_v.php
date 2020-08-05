@@ -35,7 +35,7 @@
         <td class="text-center">
           <input
             class="isActive"
-            data-url="<?= base_url("product/isActiveSetter/") ?>"
+            data-url="<?= base_url("product/imageIsActiveSetter/$item_image->id") ?>"
             type="checkbox"
             data-switchery
             data-color="#10c469"

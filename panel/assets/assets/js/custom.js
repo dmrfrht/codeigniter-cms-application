@@ -23,7 +23,7 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
-  $(".isActive").on("change", function () {
+  $(".content-container, .image_list_container").on("change", ".isActive", function () {
     var $data_url = $(this).data("url");
     var $data = $(this).prop("checked");
 

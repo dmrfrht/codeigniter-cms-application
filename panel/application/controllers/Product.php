@@ -318,4 +318,20 @@ class Product extends CI_Controller
       echo $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
     }
   }
+
+  public function imageIsActiveSetter($id)
+  {
+    if ($id) {
+      $isActive = ($this->input->post("data") == "true") ? 1 : 0;
+
+      $this->product_image_model->update(
+        array(
+          "id" => $id
+        ),
+        array(
+          "isActive" => $isActive
+        )
+      );
+    }
+  }
 }

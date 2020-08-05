@@ -16,7 +16,7 @@
           </p>
         </div>
       <?php else: ?>
-        <table class="table table-hover table-striped table-bordered">
+        <table class="table table-hover table-striped table-bordered content-container">
           <thead>
           <th><i class="fa fa-reorder"></i></th>
           <th>#id</th>
