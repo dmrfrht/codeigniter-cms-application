@@ -8,7 +8,7 @@
   <div class="col-md-12">
     <div class="widget">
       <div class="widget-body">
-        <form action="<?= base_url("news/save") ?>" method="post">
+        <form action="<?= base_url("news/save") ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label>Haber Başlığı</label>
             <input type="text" name="title" class="form-control" placeholder="Başlık">
