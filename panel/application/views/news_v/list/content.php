@@ -18,15 +18,15 @@
       <?php else: ?>
         <table class="table table-hover table-striped table-bordered content-container">
           <thead>
-          <th><i class="fa fa-reorder"></i></th>
-          <th>#id</th>
-          <th>Başlık</th>
+          <th class="w25"><i class="fa fa-reorder"></i></th>
+          <th class="w25">#id</th>
+          <th class="w100">Başlık</th>
           <th>url</th>
           <th>Açıklama</th>
-          <th>Haber Türü</th>
-          <th>Görsel</th>
-          <th>Durumu</th>
-          <th class="w250">İşlem</th>
+          <th class="w100">Haber Türü</th>
+          <th class="w150">Görsel</th>
+          <th class="w50">Durumu</th>
+          <th class="w150">İşlem</th>
           </thead>
           <tbody class="sortable" data-url="<?= base_url("news/rankSetter") ?>">
           <?php foreach ($items as $item): ?>
@@ -36,8 +36,18 @@
               <td><?= $item->title ?></td>
               <td><?= $item->url ?></td>
               <td><?= $item->description ?></td>
-              <td><?= $item->news_type ?></td>
-              <td>Görsel Gelecek</td>
+              <td class="text-center"><?= $item->news_type ?></td>
+              <td>
+                <?php if ($item->news_type == "image"): ?>
+                  <img src="<?= base_url("uploads/{$viewFolder}/$item->img_url") ?>"
+                       alt="" width="100"
+                       class="img-rounded">
+                <?php elseif ($item->news_type == "video"): ?>
+                  <iframe class="img-rounded" width="200" height="180" src="https://www.youtube.com/embed/<?= $item->video_url  ?>" frameborder="0"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen></iframe>
+                <?php endif; ?>
+              </td>
               <td>
                 <input
                   class="isActive"
