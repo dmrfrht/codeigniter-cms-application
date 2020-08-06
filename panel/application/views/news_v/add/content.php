@@ -27,21 +27,39 @@
           <div class="form-group">
             <label>Haber Türü</label>
             <select class="form-control news_type_select" name="news_type">
-              <option value="image">Resim</option>
-              <option value="video">Video</option>
+              <option <?= isset($news_type) &&  ($news_type == 'image') ? ' selected' : null ?> value="image">Resim</option>
+              <option <?= isset($news_type) &&  ($news_type == 'video') ? ' selected' : null ?> value="video">Video</option>
             </select>
           </div>
-          <div class="form-group image_upload_container">
-            <label>Görsel Seçiniz</label>
-            <input type="file" class="form-control" name="img_url">
-          </div>
-          <div class="form-group video_url_container">
-            <label>Video Url</label>
-            <input type="text" name="video_url" class="form-control" placeholder="Video URL">
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("title") ?></small>
-            <?php endif; ?>
-          </div>
+
+          <?php if (isset($form_error)): ?>
+            <div class="form-group image_upload_container"
+                 style="display: <?= ($news_type == 'image') ? 'block' : 'none' ?>">
+              <label>Görsel Seçiniz</label>
+              <input type="file" class="form-control" name="img_url">
+            </div>
+
+            <div class="form-group video_url_container"
+                 style="display: <?= ($news_type == 'video') ? 'block' : 'none' ?>">
+              <label>Video Url</label>
+              <input type="text" name="video_url" class="form-control" placeholder="Video URL">
+              <?php if (isset($form_error)): ?>
+                <small class="input-form-error pull-right"><?= form_error("video_url") ?></small>
+              <?php endif; ?>
+            </div>
+          <?php else: ?>
+            <div class="form-group image_upload_container">
+              <label>Görsel Seçiniz</label>
+              <input type="file" class="form-control" name="img_url">
+            </div>
+
+            <div class="form-group video_url_container">
+              <label>Video Url</label>
+              <input type="text" name="video_url" class="form-control" placeholder="Video URL">
+            </div>
+          <?php endif; ?>
+
+
           <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
           <a href="<?= base_url("news") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
         </form>
