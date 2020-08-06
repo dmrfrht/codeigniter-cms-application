@@ -69,19 +69,57 @@ class News extends CI_Controller
     $validate = $this->form_validation->run();
 
     if ($validate) {
+      if ($news_type == "image") {
 
+        $file_name = convert_to_seo(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-      die();
-      $insert = $this->news_model->add(
-        array(
+        $config["allowed_types"] = "jpg|jpeg|png";
+        $config["upload_path"] = "uploads/$this->viewFolder/";
+        $config["file_name"] = $file_name;
+
+        $this->load->library("upload", $config);
+
+        $upload = $this->upload->do_upload("img_url");
+
+        if ($upload) {
+          $uploaded_file = $this->upload->data("file_name");
+
+          $data = array(
+            "title" => $this->input->post("title"),
+            "url" => convert_to_seo($this->input->post("title")),
+            "description" => $this->input->post("description"),
+            "news_type" => $news_type,
+            "img_url" => $uploaded_file,
+            "video_url" => "#",
+            "rank" => 0,
+            "isActive" => true,
+            "createdAt" => date("Y-m-d H:i:s")
+          );
+        } else {
+          $alert = array(
+            "title" => "İşlem Başarısızdır",
+            "text" => "Görsel yüklenirken bir problem oluştu.",
+            "type" => "error"
+          );
+          $this->session->set_flashdata("alert", $alert);
+          redirect(base_url("news/new_form"));
+          die();
+        }
+
+      } else if ($news_type == "video") {
+        $data = array(
           "title" => $this->input->post("title"),
           "url" => convert_to_seo($this->input->post("title")),
           "description" => $this->input->post("description"),
+          "news_type" => $news_type,
+          "img_url" => "#",
+          "video_url" => $this->input->post("video_url"),
           "rank" => 0,
           "isActive" => true,
           "createdAt" => date("Y-m-d H:i:s")
-        )
-      );
+        );
+      }
+      $insert = $this->news_model->add($data);
 
       if ($insert) {
         $alert = array(
@@ -93,7 +131,7 @@ class News extends CI_Controller
 
       }
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("product"));
+      redirect(base_url("news"));
     } else {
       $viewData = new stdClass();
 
