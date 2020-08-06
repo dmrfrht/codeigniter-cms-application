@@ -26,16 +26,16 @@
           </div>
           <div class="form-group">
             <label>Haber Türü</label>
-            <select class="form-control" name="news_type">
+            <select class="form-control news_type_select" name="news_type">
               <option value="image">Resim</option>
               <option value="video">Video</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group image_upload_container">
             <label>Görsel Seçiniz</label>
             <input type="file" class="form-control" name="img_url">
           </div>
-          <div class="form-group">
+          <div class="form-group video_url_container">
             <label>Video Url</label>
             <input type="text" name="video_url" class="form-control" placeholder="Video URL">
             <?php if (isset($form_error)): ?>
