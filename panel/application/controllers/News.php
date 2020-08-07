@@ -164,66 +164,6 @@ class News extends CI_Controller
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
 
-  public function update_($id)
-  {
-    $this->load->library("form_validation");
-
-    $this->form_validation->set_rules("title", "Başlık", "required|trim");
-
-    $this->form_validation->set_message(
-      array(
-        "required" => "<b>{field}</b> alanı doldurulmalıdır"
-      )
-    );
-
-    $validate = $this->form_validation->run();
-
-    if ($validate) {
-      $update = $this->news_model->update(
-        array(
-          "id" => $id
-        ),
-        array(
-          "title" => $this->input->post("title"),
-          "url" => convert_to_seo($this->input->post("title")),
-          "description" => $this->input->post("description"),
-        )
-      );
-
-      if ($update) {
-        $alert = array(
-          "title" => "İşlem Başarılıdır",
-          "text" => "Kayıt başarılı bir şekilde güncellendi",
-          "type" => "success"
-        );
-      } else {
-        $alert = array(
-          "title" => "İşlem Başarısızdır",
-          "text" => "Kayıt güncellenirken bir hata oluştu",
-          "type" => "error"
-        );
-      }
-      $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("product"));
-    } else {
-      $viewData = new stdClass();
-
-      $item = $this->news_model->get(
-        array(
-          "id" => $id
-        )
-      );
-
-      $viewData->viewFolder = $this->viewFolder;
-      $viewData->subViewFolder = "update";
-      $viewData->form_error = true;
-
-      $viewData->item = $item;
-
-      $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-    }
-  }
-
   public function update($id)
   {
     $this->load->library("form_validation");

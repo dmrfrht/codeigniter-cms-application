@@ -142,76 +142,10 @@ class References extends CI_Controller
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
 
-  public function update_($id)
-  {
-    $this->load->library("form_validation");
-
-    $this->form_validation->set_rules("title", "Başlık", "required|trim");
-
-    $this->form_validation->set_message(
-      array(
-        "required" => "<b>{field}</b> alanı doldurulmalıdır"
-      )
-    );
-
-    $validate = $this->form_validation->run();
-
-    if ($validate) {
-      $update = $this->reference_model->update(
-        array(
-          "id" => $id
-        ),
-        array(
-          "title" => $this->input->post("title"),
-          "url" => convert_to_seo($this->input->post("title")),
-          "description" => $this->input->post("description"),
-        )
-      );
-
-      if ($update) {
-        $alert = array(
-          "title" => "İşlem Başarılıdır",
-          "text" => "Kayıt başarılı bir şekilde güncellendi",
-          "type" => "success"
-        );
-      } else {
-        $alert = array(
-          "title" => "İşlem Başarısızdır",
-          "text" => "Kayıt güncellenirken bir hata oluştu",
-          "type" => "error"
-        );
-      }
-      $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("product"));
-    } else {
-      $viewData = new stdClass();
-
-      $item = $this->reference_model->get(
-        array(
-          "id" => $id
-        )
-      );
-
-      $viewData->viewFolder = $this->viewFolder;
-      $viewData->subViewFolder = "update";
-      $viewData->form_error = true;
-
-      $viewData->item = $item;
-
-      $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-    }
-  }
-
   public function update($id)
   {
     $this->load->library("form_validation");
 
-    $news_type = $this->input->post("news_type");
-
-    if ($news_type == "video") {
-      $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
-    }
-
     $this->form_validation->set_rules("title", "Başlık", "required|trim");
 
     $this->form_validation->set_message(
@@ -223,58 +157,45 @@ class References extends CI_Controller
     $validate = $this->form_validation->run();
 
     if ($validate) {
-      if ($news_type == "image") {
 
-        if ($_FILES["img_url"]["name"] != "") {
-          $file_name = convert_to_seo(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+      if ($_FILES["img_url"]["name"] != "") {
+        $file_name = convert_to_seo(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-          $config["allowed_types"] = "jpg|jpeg|png";
-          $config["upload_path"] = "uploads/$this->viewFolder/";
-          $config["file_name"] = $file_name;
+        $config["allowed_types"] = "jpg|jpeg|png";
+        $config["upload_path"] = "uploads/$this->viewFolder/";
+        $config["file_name"] = $file_name;
 
-          $this->load->library("upload", $config);
+        $this->load->library("upload", $config);
 
-          $upload = $this->upload->do_upload("img_url");
+        $upload = $this->upload->do_upload("img_url");
 
-          if ($upload) {
-            $uploaded_file = $this->upload->data("file_name");
+        if ($upload) {
+          $uploaded_file = $this->upload->data("file_name");
 
-            $data = array(
-              "title" => $this->input->post("title"),
-              "url" => convert_to_seo($this->input->post("title")),
-              "description" => $this->input->post("description"),
-              "news_type" => $news_type,
-              "img_url" => $uploaded_file,
-              "video_url" => "#",
-            );
-          } else {
-            $alert = array(
-              "title" => "İşlem Başarısızdır",
-              "text" => "Görsel yüklenirken bir problem oluştu.",
-              "type" => "error"
-            );
-            $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("news/update_form/$id"));
-            die();
-          }
-        } else {
           $data = array(
             "title" => $this->input->post("title"),
             "url" => convert_to_seo($this->input->post("title")),
             "description" => $this->input->post("description"),
+            "img_url" => $uploaded_file,
           );
+        } else {
+          $alert = array(
+            "title" => "İşlem Başarısızdır",
+            "text" => "Görsel yüklenirken bir problem oluştu.",
+            "type" => "error"
+          );
+          $this->session->set_flashdata("alert", $alert);
+          redirect(base_url("references/update_form/$id"));
+          die();
         }
-
-      } else if ($news_type == "video") {
+      } else {
         $data = array(
           "title" => $this->input->post("title"),
           "url" => convert_to_seo($this->input->post("title")),
           "description" => $this->input->post("description"),
-          "news_type" => $news_type,
-          "img_url" => "#",
-          "video_url" => $this->input->post("video_url"),
         );
       }
+
       $update = $this->reference_model->update(array("id" => $id), $data);
 
       if ($update) {
@@ -291,7 +212,7 @@ class References extends CI_Controller
         );
       }
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("news"));
+      redirect(base_url("references"));
     } else {
       $viewData = new stdClass();
 
@@ -304,7 +225,6 @@ class References extends CI_Controller
       $viewData->viewFolder = $this->viewFolder;
       $viewData->subViewFolder = "update";
       $viewData->form_error = true;
-      $viewData->news_type = $news_type;
       $viewData->item = $item;
 
       $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
