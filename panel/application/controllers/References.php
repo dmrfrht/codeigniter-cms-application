@@ -1,21 +1,21 @@
 <?php
 
-class News extends CI_Controller
+class References extends CI_Controller
 {
   public $viewFolder = "";
 
   public function __construct()
   {
     parent::__construct();
-    $this->viewFolder = "news_v";
-    $this->load->model("news_model");
+    $this->viewFolder = "references_v";
+    $this->load->model("reference_model");
   }
 
   public function index()
   {
     $viewData = new stdClass();
 
-    $items = $this->news_model->get_all(
+    $items = $this->reference_model->get_all(
       array(), "rank ASC"
     );
 
@@ -118,7 +118,7 @@ class News extends CI_Controller
           "createdAt" => date("Y-m-d H:i:s")
         );
       }
-      $insert = $this->news_model->add($data);
+      $insert = $this->reference_model->add($data);
 
       if ($insert) {
         $alert = array(
@@ -151,7 +151,7 @@ class News extends CI_Controller
   {
     $viewData = new stdClass();
 
-    $item = $this->news_model->get(
+    $item = $this->reference_model->get(
       array(
         "id" => $id
       )
@@ -179,7 +179,7 @@ class News extends CI_Controller
     $validate = $this->form_validation->run();
 
     if ($validate) {
-      $update = $this->news_model->update(
+      $update = $this->reference_model->update(
         array(
           "id" => $id
         ),
@@ -208,7 +208,7 @@ class News extends CI_Controller
     } else {
       $viewData = new stdClass();
 
-      $item = $this->news_model->get(
+      $item = $this->reference_model->get(
         array(
           "id" => $id
         )
@@ -297,7 +297,7 @@ class News extends CI_Controller
           "video_url" => $this->input->post("video_url"),
         );
       }
-      $update = $this->news_model->update(array("id" => $id), $data);
+      $update = $this->reference_model->update(array("id" => $id), $data);
 
       if ($update) {
         $alert = array(
@@ -317,7 +317,7 @@ class News extends CI_Controller
     } else {
       $viewData = new stdClass();
 
-      $item = $this->news_model->get(
+      $item = $this->reference_model->get(
         array(
           "id" => $id
         )
@@ -335,7 +335,7 @@ class News extends CI_Controller
 
   public function delete($id)
   {
-    $delete = $this->news_model->delete(
+    $delete = $this->reference_model->delete(
       array(
         "id" => $id
       )
@@ -363,7 +363,7 @@ class News extends CI_Controller
     if ($id) {
       $isActive = ($this->input->post("data") == "true") ? 1 : 0;
 
-      $this->news_model->update(
+      $this->reference_model->update(
         array(
           "id" => $id
         ),
@@ -381,7 +381,7 @@ class News extends CI_Controller
     $items = $order["ord"];
 
     foreach ($items as $rank => $id) {
-      $this->news_model->update(
+      $this->reference_model->update(
         array(
           "id" => $id,
           "rank !=" => $rank
