@@ -40,21 +40,15 @@ class References extends CI_Controller
   {
     $this->load->library("form_validation");
 
-    $news_type = $this->input->post("news_type");
-
-    if ($news_type == "image") {
-      if ($_FILES["img_url"]["name"] == "") {
-        $alert = array(
-          "title" => "İşlem Başarısızdır",
-          "text" => "Lütfen bir görsel seçiniz.",
-          "type" => "error"
-        );
-        $this->session->set_flashdata("alert", $alert);
-        redirect(base_url("news/new_form"));
-        die();
-      }
-    } else if ($news_type == "video") {
-      $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
+    if ($_FILES["img_url"]["name"] == "") {
+      $alert = array(
+        "title" => "İşlem Başarısızdır",
+        "text" => "Lütfen bir görsel seçiniz.",
+        "type" => "error"
+      );
+      $this->session->set_flashdata("alert", $alert);
+      redirect(base_url("references/new_form"));
+      die();
     }
 
     $this->form_validation->set_rules("title", "Başlık", "required|trim");
@@ -68,80 +62,64 @@ class References extends CI_Controller
     $validate = $this->form_validation->run();
 
     if ($validate) {
-      if ($news_type == "image") {
 
-        $file_name = convert_to_seo(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+      $file_name = convert_to_seo(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-        $config["allowed_types"] = "jpg|jpeg|png";
-        $config["upload_path"] = "uploads/$this->viewFolder/";
-        $config["file_name"] = $file_name;
+      $config["allowed_types"] = "jpg|jpeg|png";
+      $config["upload_path"] = "uploads/$this->viewFolder/";
+      $config["file_name"] = $file_name;
 
-        $this->load->library("upload", $config);
+      $this->load->library("upload", $config);
 
-        $upload = $this->upload->do_upload("img_url");
+      $upload = $this->upload->do_upload("img_url");
 
-        if ($upload) {
-          $uploaded_file = $this->upload->data("file_name");
+      if ($upload) {
+        $uploaded_file = $this->upload->data("file_name");
 
-          $data = array(
+        $insert = $this->reference_model->add(
+          array(
             "title" => $this->input->post("title"),
             "url" => convert_to_seo($this->input->post("title")),
             "description" => $this->input->post("description"),
-            "news_type" => $news_type,
             "img_url" => $uploaded_file,
-            "video_url" => "#",
             "rank" => 0,
             "isActive" => true,
             "createdAt" => date("Y-m-d H:i:s")
+          )
+        );
+
+        if ($insert) {
+          $alert = array(
+            "title" => "İşlem Başarılıdır",
+            "text" => "Kayıt başarılı bir şekilde eklendi",
+            "type" => "success"
           );
         } else {
           $alert = array(
             "title" => "İşlem Başarısızdır",
-            "text" => "Görsel yüklenirken bir problem oluştu.",
+            "text" => "Kayıt eklenirken bir problem oluştu.",
             "type" => "error"
           );
-          $this->session->set_flashdata("alert", $alert);
-          redirect(base_url("news/new_form"));
-          die();
         }
-
-      } else if ($news_type == "video") {
-        $data = array(
-          "title" => $this->input->post("title"),
-          "url" => convert_to_seo($this->input->post("title")),
-          "description" => $this->input->post("description"),
-          "news_type" => $news_type,
-          "img_url" => "#",
-          "video_url" => $this->input->post("video_url"),
-          "rank" => 0,
-          "isActive" => true,
-          "createdAt" => date("Y-m-d H:i:s")
-        );
-      }
-      $insert = $this->reference_model->add($data);
-
-      if ($insert) {
-        $alert = array(
-          "title" => "İşlem Başarılıdır",
-          "text" => "Kayıt başarılı bir şekilde eklendi",
-          "type" => "success"
-        );
       } else {
         $alert = array(
           "title" => "İşlem Başarısızdır",
-          "text" => "Kayıt eklenirken bir problem oluştu.",
+          "text" => "Görsel yüklenirken bir problem oluştu.",
           "type" => "error"
         );
+        $this->session->set_flashdata("alert", $alert);
+        redirect(base_url("references/new_form"));
+        die();
       }
+
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("news"));
+      redirect(base_url("references"));
     } else {
       $viewData = new stdClass();
 
       $viewData->viewFolder = $this->viewFolder;
       $viewData->subViewFolder = "add";
       $viewData->form_error = true;
-      $viewData->news_type = $news_type;
 
       $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }

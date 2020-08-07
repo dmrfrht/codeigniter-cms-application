@@ -20,9 +20,9 @@
           <thead>
           <th class="w25"><i class="fa fa-reorder"></i></th>
           <th class="w25">#id</th>
-          <th class="w100">Başlık</th>
+          <th>Başlık</th>
           <th>url</th>
-          <th class="w150">Görsel</th>
+          <th>Görsel</th>
           <th class="w50">Durumu</th>
           <th class="w150">İşlem</th>
           </thead>
@@ -35,7 +35,7 @@
               <td><?= $item->url ?></td>
               <td>
                 <img src="<?= base_url("uploads/{$viewFolder}/$item->img_url") ?>"
-                     alt="" width="100"
+                     alt="" width="40"
                      class="img-rounded">
               </td>
               <td>
