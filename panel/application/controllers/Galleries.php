@@ -369,12 +369,12 @@ class Galleries extends CI_Controller
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
 
-  public function fileUpload($id)
+  public function fileUpload($galleryId, $galleryType, $folderName)
   {
     $file_name = convert_to_seo(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
     $config["allowed_types"] = "jpg|jpeg|png";
-    $config["upload_path"] = "uploads/$this->viewFolder/";
+    $config["upload_path"] = ($galleryType == "image") ? "uploads/$this->viewFolder/images/$folderName" : "uploads/$this->viewFolder/files/$folderName";
     $config["file_name"] = $file_name;
 
     $this->load->library("upload", $config);
@@ -384,14 +384,15 @@ class Galleries extends CI_Controller
     if ($upload) {
       $uploaded_file = $this->upload->data("file_name");
 
-      $this->product_image_model->add(
+      $modelName = ($galleryType == "image") ? "image_model" : "file_model";
+
+      $this->$modelName->add(
         array(
-          "img_url" => $uploaded_file,
+          "url" => "{$config["upload_path"]}/$uploaded_file",
           "rank" => 0,
           "isActive" => true,
-          "isCover" => 0,
           "createdAt" => date("Y-m-d H:i:s"),
-          "product_id" => $id
+          "gallery_id" => $galleryId
         )
       );
 
