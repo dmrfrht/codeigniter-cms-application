@@ -8,21 +8,13 @@
   <div class="col-md-12">
     <div class="widget">
       <div class="widget-body">
-        <form action="<?= base_url("references/update/$item->id") ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url("brands/update/$item->id") ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label>Ürün Başlığı</label>
+            <label>Marka Başlığı</label>
             <input type="text" name="title" class="form-control" placeholder="Başlık" value="<?= $item->title ?>">
             <?php if (isset($form_error)): ?>
               <small class="input-form-error pull-right"><?= form_error("title") ?></small>
             <?php endif; ?>
-          </div>
-          <div class="form-group">
-            <label>Ürün Açıklaması</label>
-            <textarea
-              class="m-0"
-              data-plugin="summernote"
-              data-options="{height: 250}"
-              name="description"><?= $item->description ?></textarea>
           </div>
 
           <div class="row">
@@ -38,7 +30,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary btn-md btn-outline">Güncelle</button>
-          <a href="<?= base_url("references") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
+          <a href="<?= base_url("brands") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
         </form>
       </div>
     </div>

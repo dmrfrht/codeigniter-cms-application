@@ -172,8 +172,6 @@ class Brands extends CI_Controller
 
           $data = array(
             "title" => $this->input->post("title"),
-            "url" => convert_to_seo($this->input->post("title")),
-            "description" => $this->input->post("description"),
             "img_url" => $uploaded_file,
           );
         } else {
@@ -189,8 +187,6 @@ class Brands extends CI_Controller
       } else {
         $data = array(
           "title" => $this->input->post("title"),
-          "url" => convert_to_seo($this->input->post("title")),
-          "description" => $this->input->post("description"),
         );
       }
 
