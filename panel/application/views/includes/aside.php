@@ -56,7 +56,7 @@
       <ul class="app-menu">
 
         <li>
-          <a href="<?= base_url("dashboard")  ?>">
+          <a href="<?= base_url("dashboard") ?>">
             <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
             <span class="menu-text">Dashboard</span>
           </a>
@@ -90,35 +90,35 @@
         </li>
 
         <li>
-          <a href="<?= base_url("product")  ?>">
+          <a href="<?= base_url("product") ?>">
             <i class="menu-icon fa fa-cubes"></i>
             <span class="menu-text">Ürünler</span>
           </a>
         </li>
 
         <li>
-          <a href="<?= base_url("news")  ?>">
+          <a href="<?= base_url("news") ?>">
             <i class="menu-icon fa fa-newspaper-o"></i>
             <span class="menu-text">Haberler</span>
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="<?= base_url("courses") ?>">
             <i class="menu-icon fa fa-calendar"></i>
             <span class="menu-text">Eğitimler</span>
           </a>
         </li>
 
         <li>
-          <a href="<?= base_url("references")  ?>">
+          <a href="<?= base_url("references") ?>">
             <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
             <span class="menu-text">Referanslar</span>
           </a>
         </li>
 
         <li>
-          <a href="<?= base_url("brands")  ?>">
+          <a href="<?= base_url("brands") ?>">
             <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
             <span class="menu-text">Markalar</span>
           </a>
