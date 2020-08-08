@@ -32,7 +32,7 @@
             <tr id="ord-<?= $item->id ?>">
               <td><i class="fa fa-reorder"></i></td>
               <td>#<?= $item->id ?></td>
-              <td><?= $item->gallery_name ?></td>
+              <td><?= $item->title ?></td>
               <td><?= $item->gallery_type ?></td>
               <td><?= $item->folder_name ?></td>
               <td><?= $item->url ?></td>
