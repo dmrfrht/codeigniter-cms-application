@@ -67,7 +67,7 @@
                   $button_content = "Dosyalar";
                 }
                 ?>
-                <a href="<?= base_url("galleries/imageForm/$item->id") ?>" class="btn btn-purple btn-xs btn-outline"><i
+                <a href="<?= base_url("galleries/uploadForm/$item->id") ?>" class="btn btn-purple btn-xs btn-outline"><i
                     class="fa <?= $button_image ?>"></i> <?= $button_content ?></a>
 
               </td>
