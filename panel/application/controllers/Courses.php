@@ -52,6 +52,7 @@ class Courses extends CI_Controller
     }
 
     $this->form_validation->set_rules("title", "Başlık", "required|trim");
+    $this->form_validation->set_rules("event_date", "Eğitim Tarihi", "required|trim");
 
     $this->form_validation->set_message(
       array(
@@ -79,6 +80,9 @@ class Courses extends CI_Controller
         $insert = $this->course_model->add(
           array(
             "title" => $this->input->post("title"),
+            "description" => $this->input->post("description"),
+            "url" => convert_to_seo($this->input->post("url")),
+            "event_date" => $this->input->post("event_date"),
             "img_url" => $uploaded_file,
             "rank" => 0,
             "isActive" => true,
