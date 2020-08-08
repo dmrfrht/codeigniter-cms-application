@@ -19,3 +19,8 @@ function get_file_name($id)
     )
   );
 }
+
+function get_readable_date($date)
+{
+  return strftime('%e %B %Y', strtotime($date));
+}

@@ -21,7 +21,7 @@
           <th class="w25"><i class="fa fa-reorder"></i></th>
           <th class="w25">#id</th>
           <th>Başlık</th>
-          <th>Tarih</th>
+          <th class="w100">Tarih</th>
           <th class="w50">Görsel</th>
           <th class="w50">Durumu</th>
           <th class="w150">İşlem</th>
@@ -32,7 +32,7 @@
               <td class="text-center"><i class="fa fa-reorder"></i></td>
               <td class="text-center">#<?= $item->id ?></td>
               <td><?= $item->title ?></td>
-              <td><?= $item->event_date ?></td>
+              <td><?= get_readable_date($item->event_date) ?></td>
               <td>
                 <img src="<?= base_url("uploads/{$viewFolder}/$item->img_url") ?>"
                      alt="" width="40"
