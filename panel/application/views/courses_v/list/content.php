@@ -21,7 +21,7 @@
           <th class="w25"><i class="fa fa-reorder"></i></th>
           <th class="w25">#id</th>
           <th>Başlık</th>
-          <th class="w100">Tarih</th>
+          <th class="w150">Tarih</th>
           <th class="w50">Görsel</th>
           <th class="w50">Durumu</th>
           <th class="w150">İşlem</th>

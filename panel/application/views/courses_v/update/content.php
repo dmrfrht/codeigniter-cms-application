@@ -27,12 +27,18 @@
           </div>
 
           <div class="row">
+            <div class="col-md-4">
+              <label for="datetimepicker1">Eğitim Tarihi</label>
+              <input id="datetimepicker1" data-plugin="datetimepicker"
+                     data-options="{ inline: true, viewMode: 'days', format: 'YYYY-MM-DD HH:mm:ss' }" name="event_date"
+                     type="hidden" value="<?= $item->event_date  ?>">
+            </div>
             <div class="form-group col-md-2">
               <img src="<?= base_url("uploads/{$viewFolder}/$item->img_url") ?>" alt=""
                    class="img-responsive img-rounded"
                    width="100">
             </div>
-            <div class="col-md-10 form-group">
+            <div class="col-md-6 form-group">
               <label>Görsel Seçiniz</label>
               <input type="file" class="form-control" name="img_url">
             </div>
