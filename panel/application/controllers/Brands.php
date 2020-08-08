@@ -1,21 +1,21 @@
 <?php
 
-class References extends CI_Controller
+class Brands extends CI_Controller
 {
   public $viewFolder = "";
 
   public function __construct()
   {
     parent::__construct();
-    $this->viewFolder = "references_v";
-    $this->load->model("reference_model");
+    $this->viewFolder = "brands_v";
+    $this->load->model("brand_model");
   }
 
   public function index()
   {
     $viewData = new stdClass();
 
-    $items = $this->reference_model->get_all(
+    $items = $this->brand_model->get_all(
       array(), "rank ASC"
     );
 
@@ -47,7 +47,7 @@ class References extends CI_Controller
         "type" => "error"
       );
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("references/new_form"));
+      redirect(base_url("brands/new_form"));
       die();
     }
 
@@ -76,7 +76,7 @@ class References extends CI_Controller
       if ($upload) {
         $uploaded_file = $this->upload->data("file_name");
 
-        $insert = $this->reference_model->add(
+        $insert = $this->brand_model->add(
           array(
             "title" => $this->input->post("title"),
             "url" => convert_to_seo($this->input->post("title")),
@@ -108,12 +108,12 @@ class References extends CI_Controller
           "type" => "error"
         );
         $this->session->set_flashdata("alert", $alert);
-        redirect(base_url("references/new_form"));
+        redirect(base_url("brands/new_form"));
         die();
       }
 
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("references"));
+      redirect(base_url("brands"));
     } else {
       $viewData = new stdClass();
 
@@ -129,7 +129,7 @@ class References extends CI_Controller
   {
     $viewData = new stdClass();
 
-    $item = $this->reference_model->get(
+    $item = $this->brand_model->get(
       array(
         "id" => $id
       )
@@ -185,7 +185,7 @@ class References extends CI_Controller
             "type" => "error"
           );
           $this->session->set_flashdata("alert", $alert);
-          redirect(base_url("references/update_form/$id"));
+          redirect(base_url("brands/update_form/$id"));
           die();
         }
       } else {
@@ -196,7 +196,7 @@ class References extends CI_Controller
         );
       }
 
-      $update = $this->reference_model->update(array("id" => $id), $data);
+      $update = $this->brand_model->update(array("id" => $id), $data);
 
       if ($update) {
         $alert = array(
@@ -212,11 +212,11 @@ class References extends CI_Controller
         );
       }
       $this->session->set_flashdata("alert", $alert);
-      redirect(base_url("references"));
+      redirect(base_url("brands"));
     } else {
       $viewData = new stdClass();
 
-      $item = $this->reference_model->get(
+      $item = $this->brand_model->get(
         array(
           "id" => $id
         )
@@ -233,7 +233,7 @@ class References extends CI_Controller
 
   public function delete($id)
   {
-    $delete = $this->reference_model->delete(
+    $delete = $this->brand_model->delete(
       array(
         "id" => $id
       )
@@ -253,7 +253,7 @@ class References extends CI_Controller
       );
     }
     $this->session->set_flashdata("alert", $alert);
-    redirect(base_url("references"));
+    redirect(base_url("brands"));
   }
 
   public function isActiveSetter($id)
@@ -261,7 +261,7 @@ class References extends CI_Controller
     if ($id) {
       $isActive = ($this->input->post("data") == "true") ? 1 : 0;
 
-      $this->reference_model->update(
+      $this->brand_model->update(
         array(
           "id" => $id
         ),
@@ -279,7 +279,7 @@ class References extends CI_Controller
     $items = $order["ord"];
 
     foreach ($items as $rank => $id) {
-      $this->reference_model->update(
+      $this->brand_model->update(
         array(
           "id" => $id,
           "rank !=" => $rank

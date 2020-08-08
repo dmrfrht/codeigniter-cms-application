@@ -118,7 +118,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="<?= base_url("brands")  ?>">
             <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
             <span class="menu-text">Markalar</span>
           </a>
