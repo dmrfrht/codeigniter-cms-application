@@ -21,10 +21,10 @@
           <th><i class="fa fa-reorder"></i></th>
           <th>#id</th>
           <th>Başlık</th>
-          <th>Galeri Türü</th>
+          <th class="w100">Galeri Türü</th>
           <th>Klasör Adı</th>
           <th>url</th>
-          <th>Durumu</th>
+          <th class="w50">Durumu</th>
           <th class="w250">İşlem</th>
           </thead>
           <tbody class="sortable" data-url="<?= base_url("galleries/rankSetter") ?>">
@@ -55,8 +55,21 @@
                 </button>
                 <a href="<?= base_url("galleries/update_form/$item->id") ?>" class="btn btn-info btn-xs btn-outline"><i
                     class="fa fa-pencil-square-o"></i> Düzenle</a>
+                <?php
+                if ($item->gallery_type == "image") {
+                  $button_image = "fa-picture-o";
+                  $button_content = "Resimler";
+                } else if ($item->gallery_type == "video") {
+                  $button_image = "fa-play";
+                  $button_content = "Videolar";
+                } else if ($item->gallery_type == "file") {
+                  $button_image = "fa-folder";
+                  $button_content = "Dosyalar";
+                }
+                ?>
                 <a href="<?= base_url("galleries/imageForm/$item->id") ?>" class="btn btn-purple btn-xs btn-outline"><i
-                    class="fa fa-picture-o"></i> Resimler</a>
+                    class="fa <?= $button_image ?>"></i> <?= $button_content ?></a>
+
               </td>
             </tr>
           <?php endforeach; ?>
