@@ -79,8 +79,6 @@ class Brands extends CI_Controller
         $insert = $this->brand_model->add(
           array(
             "title" => $this->input->post("title"),
-            "url" => convert_to_seo($this->input->post("title")),
-            "description" => $this->input->post("description"),
             "img_url" => $uploaded_file,
             "rank" => 0,
             "isActive" => true,
