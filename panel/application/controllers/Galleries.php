@@ -365,6 +365,7 @@ class Galleries extends CI_Controller
     $viewData->subViewFolder = "image";
     $viewData->item = $item;
     $viewData->items = $items;
+    $viewData->gallery_type = $item->gallery_type;
 
     $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
   }
@@ -373,7 +374,7 @@ class Galleries extends CI_Controller
   {
     $file_name = convert_to_seo(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
-    $config["allowed_types"] = "jpg|jpeg|png";
+    $config["allowed_types"] = "jpg|jpeg|png|pdf|doc|docx|xls|txt";
     $config["upload_path"] = ($galleryType == "image") ? "uploads/$this->viewFolder/images/$folderName" : "uploads/$this->viewFolder/files/$folderName";
     $config["file_name"] = $file_name;
 

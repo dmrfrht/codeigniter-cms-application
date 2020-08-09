@@ -1,4 +1,4 @@
-<?php if (empty($item_images)): ?>
+<?php if (empty($items)): ?>
   <div class="alert alert-info text-center">
     <p>Bu ürüne ait resim bulunmamaktadır.</p>
   </div>
@@ -8,45 +8,38 @@
     <th class="w25"><i class="fa fa-reorder"></i></th>
     <th class="w25 text-center">#id</th>
     <th class="w50 text-center">Görsel</th>
-    <th>Resim Adı</th>
-    <th class="w50 text-center">Kapak</th>
+    <th>Dosya Yolu ve Adı</th>
     <th class="w50 text-center">Durum</th>
     <th class="w50 text-center">İşlem</th>
     </thead>
-    <tbody class="sortable" data-url="<?= base_url("product/imageRankSetter")  ?>">
-    <?php foreach ($item_images as $item_image): ?>
-      <tr id="ord-<?= $item_image->id ?>">
+    <tbody class="sortable" data-url="<?= base_url("galleries/imageRankSetter") ?>">
+    <?php foreach ($items as $item): ?>
+      <tr id="ord-<?= $item->id ?>">
         <td><i class="fa fa-reorder"></i></td>
-        <td class="text-center">#<?= $item_image->id ?></td>
+        <td class="text-center">#<?= $item->id ?></td>
         <td>
-          <img width="30"
-               src="<?= base_url("uploads/{$viewFolder}/$item_image->img_url") ?>"
-               alt="<?= $item_image->img_url ?>" class="img-responsive">
+          <?php if ($gallery_type == "image"): ?>
+            <img width="30"
+                 src="<?= base_url("$item->url") ?>"
+                 alt="<?= $item->url ?>" class="img-responsive">
+          <?php elseif ($gallery_type == "file"): ?>
+            <i class="fa fa-folder fa-2x" style="color: #fbbd08"></i>
+          <?php endif; ?>
         </td>
-        <td><?= $item_image->img_url ?></td>
-        <td class="text-center">
-          <input
-            class="isCover"
-            data-url="<?= base_url("product/isCoverSetter/$item_image->id/$item_image->product_id") ?>"
-            type="checkbox"
-            data-switchery
-            data-color="#ff5b5b"
-            <?= ($item_image->isCover) ? " checked" : null ?>
-          />
-        </td>
+        <td><?= $item->url ?></td>
         <td class="text-center">
           <input
             class="isActive"
-            data-url="<?= base_url("product/imageIsActiveSetter/$item_image->id") ?>"
+            data-url="<?= base_url("galleries/imageIsActiveSetter/$item->id") ?>"
             type="checkbox"
             data-switchery
             data-color="#10c469"
-            <?= ($item_image->isActive) ? " checked" : null ?>
+            <?= ($item->isActive) ? " checked" : null ?>
           />
         </td>
         <td class="text-center">
           <button
-            data-url="<?= base_url("product/imageDelete/$item_image->id/$item_image->product_id") ?>"
+            data-url="<?= base_url("galleries/imageDelete/$item->id/$item->gallery_id") ?>"
             class="btn btn-danger btn-xs btn-outline remove-btn">
             <i class="fa fa-trash"></i>
             Sil
