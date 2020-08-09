@@ -12,7 +12,7 @@
     <th class="w50 text-center">Durum</th>
     <th class="w50 text-center">İşlem</th>
     </thead>
-    <tbody class="sortable" data-url="<?= base_url("galleries/imageRankSetter") ?>">
+    <tbody class="sortable" data-url="<?= base_url("galleries/fileRankSetter/$gallery_type") ?>">
     <?php foreach ($items as $item): ?>
       <tr id="ord-<?= $item->id ?>">
         <td><i class="fa fa-reorder"></i></td>
@@ -30,7 +30,7 @@
         <td class="text-center">
           <input
             class="isActive"
-            data-url="<?= base_url("galleries/imageIsActiveSetter/$item->id") ?>"
+            data-url="<?= base_url("galleries/fileIsActiveSetter/$item->id/$gallery_type") ?>"
             type="checkbox"
             data-switchery
             data-color="#10c469"
@@ -39,7 +39,7 @@
         </td>
         <td class="text-center">
           <button
-            data-url="<?= base_url("galleries/imageDelete/$item->id/$item->gallery_id") ?>"
+            data-url="<?= base_url("galleries/fileDelete/$item->id/$item->gallery_id/$gallery_type") ?>"
             class="btn btn-danger btn-xs btn-outline remove-btn">
             <i class="fa fa-trash"></i>
             Sil
