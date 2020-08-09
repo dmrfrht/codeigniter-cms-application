@@ -63,7 +63,7 @@
                 } else if ($item->gallery_type == "video") {
                   $button_image = "fa-play";
                   $button_content = "Videolar";
-                  $button_url = "galleries/uploadForm/$item->id";
+                  $button_url = "galleries/galleryVideoList/$item->id";
                 } else if ($item->gallery_type == "file") {
                   $button_image = "fa-folder";
                   $button_content = "Dosyalar";

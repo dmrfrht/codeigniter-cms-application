@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-md-12">
     <h4 class="m-b-lg">
-      Video Listesi
-      <a href="<?= base_url("galleries/new_video_form") ?>" class="btn pull-right btn-outline btn-success btn-xs"><i
+      <b><?= $galleryDetail->title ?></b> galerisine ait videolar
+      <a href="<?= base_url("galleries/newGalleryVideoForm/$galleryDetail->id") ?>" class="btn pull-right btn-outline btn-success btn-xs"><i
           class="fa fa-plus"></i> Yeni Ekle</a>
     </h4>
   </div>
@@ -12,7 +12,7 @@
       <?php if (empty($items)): ?>
         <div class="alert alert-info text-center">
           <p>Burada herhangi bir veri kaydı bulunmamaktadır. Eklemek için lütfen <a
-              href="<?= base_url("galleries/new_video_form") ?>" class="">tıklayınız</a>.
+              href="<?= base_url("galleries/newGalleryVideoForm/$galleryDetail->id") ?>" class="">tıklayınız</a>.
           </p>
         </div>
       <?php else: ?>
