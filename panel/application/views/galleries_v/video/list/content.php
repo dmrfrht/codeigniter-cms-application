@@ -24,7 +24,7 @@
           <th class="w50">Durumu</th>
           <th class="w150">İşlem</th>
           </thead>
-          <tbody class="sortable" data-url="<?= base_url("galleries/rankSetter") ?>">
+          <tbody class="sortable" data-url="<?= base_url("galleries/rankGalleryVideoSetter") ?>">
           <?php foreach ($items as $item): ?>
             <tr id="ord-<?= $item->id ?>">
               <td class="text-center"><i class="fa fa-reorder"></i></td>
@@ -38,7 +38,7 @@
               <td>
                 <input
                   class="isActive"
-                  data-url="<?= base_url("galleries/isActiveSetter/$item->id") ?>"
+                  data-url="<?= base_url("galleries/galleryVideoIsActiveSetter/$item->id") ?>"
                   type="checkbox"
                   data-switchery
                   data-color="#10c469"
@@ -47,12 +47,12 @@
               </td>
               <td>
                 <button
-                  data-url="<?= base_url("galleries/delete/$item->id") ?>"
+                  data-url="<?= base_url("galleries/galleryVideoDelete/$item->id/$item->gallery_id") ?>"
                   class="btn btn-danger btn-xs btn-outline remove-btn">
                   <i class="fa fa-trash"></i>
                   Sil
                 </button>
-                <a href="<?= base_url("galleries/update_form/$item->id") ?>" class="btn btn-info btn-xs btn-outline"><i
+                <a href="<?= base_url("galleries/updateGalleryVideoForm/$item->id") ?>" class="btn btn-info btn-xs btn-outline"><i
                     class="fa fa-pencil-square-o"></i> Düzenle</a>
               </td>
             </tr>

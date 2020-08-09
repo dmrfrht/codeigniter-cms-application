@@ -19,7 +19,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
-          <a href="<?= base_url("galleries") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
+          <a href="<?= base_url("galleries/galleryVideoList/$galleryId") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
         </form>
       </div>
     </div>
