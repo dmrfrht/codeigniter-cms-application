@@ -422,9 +422,6 @@ class Galleries extends CI_Controller
     echo $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/file_list_v", $viewData, true);
   }
 
-
-
-
   public function fileIsActiveSetter($galleryId, $galleryType)
   {
     if ($galleryId && $galleryType) {
@@ -479,4 +476,18 @@ class Galleries extends CI_Controller
     }
   }
 
+  public function galleryVideoList($id)
+  {
+    $viewData = new stdClass();
+
+    $items = $this->video_model->get_all(
+      array("gallery_id" => $id), "rank ASC"
+    );
+
+    $viewData->viewFolder = $this->viewFolder;
+    $viewData->subViewFolder = "video/list";
+    $viewData->items = $items;
+
+    $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+  }
 }
