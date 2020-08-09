@@ -374,7 +374,7 @@ class Galleries extends CI_Controller
   {
     $file_name = convert_to_seo(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
-    $config["allowed_types"] = "jpg|jpeg|png|pdf|doc|docx|xls|txt";
+    $config["allowed_types"] = "jpg|jpeg|png|pdf|doc|docx|xls|xlsx|txt";
     $config["upload_path"] = ($galleryType == "image") ? "uploads/$this->viewFolder/images/$folderName" : "uploads/$this->viewFolder/files/$folderName";
     $config["file_name"] = $file_name;
 
@@ -403,21 +403,23 @@ class Galleries extends CI_Controller
 
   }
 
-  public function refreshFileList($id)
+  public function refreshFileList($galleryId, $galleryType)
   {
     $viewData = new stdClass();
+    $modelName = ($galleryType == "image") ? "image_model" : "file_model";
 
-    $item_images = $this->product_image_model->get_all(
+    $items = $this->$modelName->get_all(
       array(
-        "product_id" => $id
+        "gallery_id" => $galleryId
       )
     );
 
     $viewData->viewFolder = $this->viewFolder;
     $viewData->subViewFolder = "image";
-    $viewData->item_images = $item_images;
+    $viewData->items = $items;
+    $viewData->gallery_type = $galleryType;
 
-    echo $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
+    echo $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/file_list_v", $viewData, true);
   }
 
   public function isCoverSetter($id, $parent_id)
