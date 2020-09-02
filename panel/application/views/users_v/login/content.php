@@ -1,77 +1,45 @@
-<div class="row">
-  <div class="col-md-12">
-    <h4 class="m-b-lg">
-      Yeni Kullanıcı Ekle
-    </h4>
-  </div>
 
-  <div class="col-md-12">
-    <div class="widget">
-      <div class="widget-body">
-        <form action="<?= base_url("users/save") ?>" method="post" autocomplete="off">
-          <div class="form-group">
-            <label>Kullanıcı Adı</label>
-            <input
-              type="text"
-              name="user_name"
-              class="form-control"
-              placeholder="Kullanıcı Adı.."
-              value="<?= isset($form_error) ? set_value("user_name") : "" ?>"
-            >
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("user_name") ?></small>
-            <?php endif; ?>
-          </div>
-
-          <div class="form-group">
-            <label>Ad - Soyad</label>
-            <input
-              type="text"
-              name="full_name"
-              class="form-control"
-              placeholder="Ad - Soyad.."
-              value="<?= isset($form_error) ? set_value("full_name") : "" ?>"
-            >
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("full_name") ?></small>
-            <?php endif; ?>
-          </div>
-
-          <div class="form-group">
-            <label>E-posta Adresi</label>
-            <input
-              type="email"
-              name="email"
-              class="form-control"
-              placeholder="E-posta Adresi.."
-              value="<?= isset($form_error) ? set_value("email") : "" ?>"
-            >
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("email") ?></small>
-            <?php endif; ?>
-          </div>
-
-          <div class="form-group">
-            <label>Şifre</label>
-            <input type="password" name="password" class="form-control" placeholder="Şifre..">
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("password") ?></small>
-            <?php endif; ?>
-          </div>
-
-          <div class="form-group">
-            <label>Şifre Tekrar</label>
-            <input type="password" name="re_password" class="form-control" placeholder="Şifre Tekrar..">
-            <?php if (isset($form_error)): ?>
-              <small class="input-form-error pull-right"><?= form_error("re_password") ?></small>
-            <?php endif; ?>
-          </div>
-
-
-          <button type="submit" class="btn btn-primary btn-md btn-outline">Kaydet</button>
-          <a href="<?= base_url("users") ?>" class="btn btn-outline btn-md btn-danger">İptal</a>
-        </form>
+<div class="simple-page-wrap">
+  <div class="simple-page-logo animated swing">
+    <a href="index.html">
+      <span><i class="fa fa-gg"></i></span>
+      <span>CMS</span>
+    </a>
+  </div><!-- logo -->
+  <div class="simple-page-form animated flipInY" id="login-form">
+    <h5 class="form-title m-b-xl text-center">Kayıtlı e-posta adresiniz ile giriş yapabilirsiniz</h5>
+    <form action="<?=base_url("userop/do_login")?>" method="post">
+      <div class="form-group">
+        <input
+          id="sign-in-email"
+          type="email"
+          class="form-control"
+          placeholder="E-posta adresiniz"
+          name="user_email">
+        <?php if (isset($form_error)): ?>
+          <small class="input-form-error pull-right"><?= form_error("user_email") ?></small>
+        <?php endif; ?>
       </div>
-    </div>
-  </div>
-</div>
+
+      <div class="form-group">
+        <input
+          id="sign-in-password"
+          type="password"
+          class="form-control"
+          placeholder="Şifreniz"
+          name="user_password">
+        <?php if (isset($form_error)): ?>
+          <small class="input-form-error pull-right"><?= form_error("user_password") ?></small>
+        <?php endif; ?>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Giriş Yap</button>
+    </form>
+  </div><!-- #login-form -->
+
+  <div class="simple-page-footer">
+    <p><a href="password-forget.html">Şifremi Sıfırla</a></p>
+  </div><!-- .simple-page-footer -->
+
+
+</div><!-- .simple-page-wrap -->
