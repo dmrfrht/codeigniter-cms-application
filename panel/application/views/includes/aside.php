@@ -123,7 +123,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="<?= base_url("users") ?>">
             <i class="menu-icon fa fa-user-secret"></i>
             <span class="menu-text">Kullanıcılar</span>
           </a>
