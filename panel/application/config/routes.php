@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route["login"] = "userop/login";
 $route["cikis-yap"] = "userop/logout";
+$route["sifremi-sifirla"] = "userop/reset_password_form";
+$route["sifre-sifirla"] = "userop/reset_password";

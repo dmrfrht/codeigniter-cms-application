@@ -1,14 +1,13 @@
-
 <div class="simple-page-wrap">
   <div class="simple-page-logo animated swing">
-    <a href="index.html">
+    <a href="<?= base_url() ?>">
       <span><i class="fa fa-gg"></i></span>
       <span>CMS</span>
     </a>
   </div><!-- logo -->
   <div class="simple-page-form animated flipInY" id="login-form">
     <h5 class="form-title m-b-xl text-center">Kayıtlı e-posta adresiniz ile giriş yapabilirsiniz</h5>
-    <form action="<?=base_url("userop/do_login")?>" method="post">
+    <form action="<?= base_url("userop/do_login") ?>" method="post">
       <div class="form-group">
         <input
           id="sign-in-email"
@@ -38,7 +37,7 @@
   </div><!-- #login-form -->
 
   <div class="simple-page-footer">
-    <p><a href="password-forget.html">Şifremi Sıfırla</a></p>
+    <p><a href="<?= base_url("sifremi-sifirla") ?>">Şifremi Sıfırla</a></p>
   </div><!-- .simple-page-footer -->
 
 

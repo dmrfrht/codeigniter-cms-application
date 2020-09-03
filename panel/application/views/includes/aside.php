@@ -11,7 +11,7 @@
       </div>
       <div class="media-body">
         <div class="foldable">
-          <h5><a href="javascript:void(0)" class="username"><?= $user->full_name  ?></a></h5>
+          <h5><a href="javascript:void(0)" class="username"><?= $user->full_name ?></a></h5>
           <ul>
             <li class="dropdown">
               <a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown" aria-haspopup="true"
@@ -21,13 +21,13 @@
               </a>
               <ul class="dropdown-menu animated flipInY">
                 <li>
-                  <a class="text-color" href="<?=base_url("dashboard")?>">
+                  <a class="text-color" href="<?= base_url("dashboard") ?>">
                     <span class="m-r-xs"><i class="fa fa-home"></i></span>
                     <span>Anasayfa</span>
                   </a>
                 </li>
                 <li>
-                  <a class="text-color" href="<?=base_url("users/update_form/$user->id")?>">
+                  <a class="text-color" href="<?= base_url("users/update_form/$user->id") ?>">
                     <span class="m-r-xs"><i class="fa fa-user"></i></span>
                     <span>Profilim</span>
                   </a>
@@ -40,7 +40,7 @@
                 </li>-->
                 <li role="separator" class="divider"></li>
                 <li>
-                  <a class="text-color" href="<?=base_url("cikis-yap")?>">
+                  <a class="text-color" href="<?= base_url("cikis-yap") ?>">
                     <span class="m-r-xs"><i class="fa fa-power-off"></i></span>
                     <span>Çıkış Yap</span>
                   </a>
@@ -61,6 +61,13 @@
           <a href="<?= base_url("dashboard") ?>">
             <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
             <span class="menu-text">Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?= base_url("emailsettings") ?>">
+            <i class="menu-icon zmdi zmdi-email zmdi-hc-lg"></i>
+            <span class="menu-text">E-posta Ayarlar</span>
           </a>
         </li>
 

@@ -225,25 +225,6 @@ class Users extends CI_Controller
     }
   }
 
-  public function rankSetter()
-  {
-    $data = $this->input->post("data");
-    parse_str($data, $order);
-    $items = $order["ord"];
-
-    foreach ($items as $rank => $id) {
-      $this->user_model->update(
-        array(
-          "id" => $id,
-          "rank !=" => $rank
-        ),
-        array(
-          "rank" => $rank
-        )
-      );
-    }
-  }
-
   public function update_password_form($id)
   {
     $viewData = new stdClass();
