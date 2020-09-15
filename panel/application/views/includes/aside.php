@@ -105,9 +105,21 @@
 
         <li>
           <a href="<?= base_url("services") ?>">
-            <i class="menu-icon fa fa-list"></i>
+            <i class="menu-icon fa fa-cutlery"></i>
             <span class="menu-text">Hizmetlerimiz</span>
           </a>
+        </li>
+
+        <li class="has-submenu">
+          <a href="javascript:void(0)" class="submenu-toggle">
+            <i class="menu-icon fa fa-asterisk"></i>
+            <span class="menu-text">Portfolyo İşlemleri</span>
+            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="<?= base_url("portfolio_categories") ?>"><span class="menu-text">Portfolyo Kategorileri</span></a></li>
+            <li><a href="<?= base_url() ?>"><span class="menu-text">Portfolyo</span></a></li>
+          </ul>
         </li>
 
         <li>
